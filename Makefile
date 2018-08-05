@@ -42,6 +42,7 @@ TESTS_OBJS	= $(TESTS_SRCS:.c=.o)
 RM		= rm -f
 
 LIBS		= -lcsfml-window -lcsfml-graphics -lcsfml-system -lcsfml-audio -lcsfml-network
+LIBS		+= -llbl-libc
 
 CFLAGS		= -Werror -Wall -Wextra -fPIC -pedantic
 CFLAGS		+= -I ./include
