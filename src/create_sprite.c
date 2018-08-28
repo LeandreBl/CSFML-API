@@ -18,6 +18,8 @@
 #include "defines.h"
 #include "colors.h"
 
+#define CSFML_ERR "[" WHITE "LCSFML" RESET "] "
+
 /*
 ** Create a sprite from <pathname> with the texture at <rect>
 ** Return NULL on Error
@@ -26,7 +28,8 @@ lsfSprite_t *lsfSprite_create_rect(const char *pathname, const sfIntRect area)
 {
 	lsfSprite_t *sprite;
 
-	printf("[%sInfo%s] Opening %s%s%s\n", YELLOW, RESET, CYAN, pathname,
+	dprintf(2, CSFML_ERR
+		"[%sInfo%s] Opening %s%s%s\n", YELLOW, RESET, CYAN, pathname,
 	       RESET);
 	sprite = calloc(1, sizeof(lsfSprite_t));
 	if (sprite == NULL)
@@ -57,7 +60,8 @@ void lsfPut_sprite(lsfWindow_t *window, lsfSprite_t *sprite, sfVector2f pos)
 {
 	if (sprite == NULL || sprite->sprite == NULL
 	    || sprite->texture == NULL) {
-		dprintf(2, "[%sWarning%s] PutSprite : NULL sprite\n", GREEN,
+		dprintf(2, CSFML_ERR
+			"[%sWarning%s] PutSprite : NULL sprite\n", GREEN,
 			RESET);
 		return;
 	}
@@ -74,7 +78,8 @@ void lsfPut_sprite_resize(lsfWindow_t *window, lsfSprite_t *sprite, sfVector2f p
 		       sfVector2f resize)
 {
 	if (sprite == NULL) {
-		dprintf(2, "[%sWarning%s] PutSprite : NULL sprite\n", GREEN,
+		dprintf(2, CSFML_ERR
+			"[%sWarning%s] PutSprite : NULL sprite\n", GREEN,
 			RESET);
 		return;
 	}

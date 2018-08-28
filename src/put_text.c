@@ -42,8 +42,9 @@ int lsfPut_text(lsfWindow_t *window, const char *format, sfVector2f pos, sfColor
 	va_list va;
 
 	if (window->font == NULL) {
-		dprintf(2, "[%sWarning%s] PutWord : font not set\n", GREEN,
-			RESET);
+		dprintf(2, WHITE "[LCSFML]" RESET
+			" [%sWarning%s] PutWord : font not set\n",
+			GREEN, RESET);
 		return (-1);
 	}
 	va_start(va, color);
