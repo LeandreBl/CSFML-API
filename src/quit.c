@@ -18,13 +18,5 @@
 */
 void lsfWindow_close(lsfWindow_t *win)
 {
-	sfVector2i pos;
-
-	pos = lsfWindow_mouse(win);
-	if (pos.x >= win->width - 40 && pos.y <= 0
-	    && sfMouse_isButtonPressed(sfMouseLeft) && pos.x <= win->width
-	    && pos.y >= -40)
-		sfRenderWindow_close(win->window);
-	if (KP(sfKeyEscape))
-		sfRenderWindow_close(win->window);
+	sfRenderWindow_close(win->window);
 }
