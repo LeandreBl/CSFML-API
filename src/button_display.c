@@ -11,7 +11,7 @@
 #include "defines.h"
 #include "lbl-libc.h"
 
-void llsfPut_button(lsfWindow_t *window, lsfButton_t *button, sfVector2f pos)
+void lsfPut_button(lsfWindow_t *window, lsfButton_t *button, sfVector2f pos)
 {
 	lsfWindow_mouse(window);
 	button->pos = pos;
@@ -25,7 +25,7 @@ void llsfPut_button(lsfWindow_t *window, lsfButton_t *button, sfVector2f pos)
 		lsfPut_sprite(window, button->sprite, button->pos);
 }
 
-void llsfPut_button_name(lsfWindow_t *window, lsfButton_t *button, sfVector2f rpos,
+void lsfPut_button_name(lsfWindow_t *window, lsfButton_t *button, sfVector2f rpos,
 			sfColor color)
 {
 	sfVector2f pos;
