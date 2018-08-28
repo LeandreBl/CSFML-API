@@ -7,14 +7,14 @@
 
 #include "lcsfml.h"
 
-void sfButton_destroys(lsfButton_t **buttons)
+void lsfButton_destroys(lsfButton_t **buttons)
 {
 	for (int i = 0; buttons[i]; ++i)
-		sfButton_destroy(buttons[i]);
+		lsfButton_destroy(buttons[i]);
 	free(buttons);
 }
 
-void sfButton_destroy(lsfButton_t *button)
+void lsfButton_destroy(lsfButton_t *button)
 {
 	free(button->name);
 	free(button);

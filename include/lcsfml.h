@@ -173,7 +173,7 @@ void lsfPut_button_name(lsfWindow_t *window, lsfButton_t *button,
 			sfVector2f pos, sfColor color);
 int lsfButton_push(lsfButton_t *button, sfVector2i pos, void *data);
 
-void sfButton_destroy(lsfButton_t *button);
+void lsfButton_destroy(lsfButton_t *button);
 
 void sfButtons_destroy(lsfButton_t **buttons);
 
