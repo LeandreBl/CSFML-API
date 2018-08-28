@@ -28,6 +28,7 @@ void lsfSprite_destroys_only(lsfSprite_t **sprites)
 	}
 	free(sprites);
 }
+
 /*
 ** Entirely free a lsfSprite_t ** using a call to lsfSprite_destroy
 ** and replace the ptr freed, by NULL
@@ -38,16 +39,7 @@ void lsfSprite_destroys(lsfSprite_t **sprites)
 		lsfSprite_destroy(sprites[i]);
 	free(sprites);
 }
-/*
-** Frees all sfMusics contained in a sfMusics **
-** replaces freed pointers by NULL
-*/
-void free_musics(sfMusic **musics)
-{
-	for (int i = 0; musics[i]; ++i)
-		sfMusic_destroy(musics[i]);
-	free(musics);
-}
+
 /*
 ** Free a single lsfSprite_t, then replace it by NULL
 */
@@ -67,8 +59,6 @@ void lsfWindow_destroy(lsfWindow_t *window)
 	sfRenderWindow_destroy(window->window);
 	free(window->pixels);
 	free(window->font);
-	if (window->musics)
-		free_musics(window->musics);
 	if (window->frame != NULL) {
 		sfTexture_destroy(window->frame->texture);
 		sfSprite_destroy(window->frame->sprite);

@@ -80,6 +80,5 @@ lsfWindow_t *lsfWindow_create(int height, float dim, char *name, int bar)
 	sfSprite_setTexture(window->frame->sprite, window->frame->texture,
 			    sfTrue);
 	window->font = NULL;
-	window->musics = NULL;
 	return (window);
 }

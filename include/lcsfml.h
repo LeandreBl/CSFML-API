@@ -57,12 +57,11 @@ typedef struct window_s
 {
 	int width;
 	int height;
-	sfVector2i mouse;
 	sfRenderWindow *window;
 	sfUint8 *pixels;
 	char *font;
-	sfMusic **musics;
 	struct sprite_s *frame;
+	sfVector2i mouse;
 } lsfWindow_t;
 
 typedef int (* lsfEvt_t)(struct window_s *window,
