@@ -14,7 +14,7 @@
 #include "lbl-libc.h"
 #include "colors.h"
 
-#define CSFML_ERR "[CSFML] "
+#define CSFML_ERR "[" WHITE "LCSFML" RESET "] "
 #define SCRIPT_TAG "name : "
 #define LOAD_TAG "load > "
 
@@ -124,7 +124,7 @@ int lsfScript(const char *pathname, const char *script, lsfSprite_t ***ptr)
 	int nb;
 
 	file = load_file(pathname);
-	printf("[%sInfo%s] Loading script %s\"%s\"%s\n", YELLOW, RESET, GREEN,
+	dprintf(2, CSFML_ERR "[%sInfo%s] Loading script %s\"%s\"%s\n", YELLOW, RESET, GREEN,
 	       script, RESET);
 	if (file == NULL) {
 		dprintf(2, CSFML_ERR "[%sError%s] cannot open <%s> script\n",
@@ -146,7 +146,7 @@ int lsfScript(const char *pathname, const char *script, lsfSprite_t ***ptr)
 	if (use_script(file + line, nb, *ptr) == -1)
 		return (-1);
 	sfree_tab(&file);
-	printf("[%sInfo%s] script %s\"%s\"%s successfully loaded\n", YELLOW,
+	dprintf(2, CSFML_ERR "[%sInfo%s] script %s\"%s\"%s successfully loaded\n", YELLOW,
 	       RESET, GREEN, script, RESET);
 	return (0);
 }

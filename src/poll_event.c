@@ -38,10 +38,10 @@ int lsfPollEvent(lsfWindow_t *window, lsfEvtPtr_t tab[], int size, void *data)
 		for (int i = 0; i < size; ++i) {
 			if (event.type == tab[i].type) {
 				if (tab[i].fction == NULL)
-					dprintf(2,
+					dprintf(2, "[%sLCSFML%s]"
 						"[%sWarning%s] pollEvent "
 						"function pointer n°%d is "
-						"NULL\n",
+						"NULL\n", WHITE, RESET,
 						GREEN, RESET, i);
 				else if (tab[i].fction(window, &event, data)
 					 == -1)

@@ -70,8 +70,8 @@ lsfWindow_t *lsfWindow_create(int height, float dim, char *name, int bar)
 		create_window(name, window->width, window->height, bar);
 	window->frame = calloc(1, sizeof(lsfSprite_t));
 	if (!window->pixels || !window->window || !window->pixels) {
-		dprintf(2, "[%sError%s] : Failed to create %s CSFML window\n",
-			BOLDRED, RESET, name);
+		dprintf(2, "[%sLCSFML%s] [%sError%s] : Failed to create %s CSFML window\n",
+			WHITE, RESET, BOLDRED, RESET, name);
 		return (NULL);
 	}
 	window->frame->sprite = sfSprite_create();
