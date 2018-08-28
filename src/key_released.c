@@ -10,7 +10,7 @@
 /*
 ** Return 1 if the sfKey "key" has been released
 */
-int key_released(int key)
+int lsfKeyReleased(int key)
 {
 	if (sfKeyboard_isKeyPressed(key)) {
 		while (sfKeyboard_isKeyPressed(key))

@@ -1,5 +1,5 @@
 /*
-** put_square.c for my_put_square.c in /home/leandre/Rushs/scroller/lib/CSFML
+** lsfPut_square.c for my_lsfPut_square.c in /home/leandre/Rushs/scroller/lib/CSFML
 **
 ** Made by Léandre Blanchard
 ** Login   <leandre.blanchard@epitech.eu>
@@ -11,13 +11,13 @@
 #include "lcsfml.h"
 
 /*
-** Draw a square on window_t "window" at coordinates "pos"
+** Draw a square on lsfWindow_t "window" at coordinates "pos"
 ** with color "color", with size "size"
 ** where "size" is the height/width size,
 ** if size == 2, it will draw 4 pixels of "color" color
 ** This function does not return
 */
-void put_square(sfVector2i pos, sfColor color, window_t *window, int size)
+void lsfPut_square(sfVector2i pos, sfColor color, lsfWindow_t *window, int size)
 {
 	int i;
 	int j;
@@ -25,7 +25,7 @@ void put_square(sfVector2i pos, sfColor color, window_t *window, int size)
 	i = 0;
 	j = 0;
 	while (i != size) {
-		put_pixel(window, pos.x + i, pos.y + j, color);
+		lsfPut_pixel(window, pos.x + i, pos.y + j, color);
 		j++;
 		if (j == size) {
 			i++;

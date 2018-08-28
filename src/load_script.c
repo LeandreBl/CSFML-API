@@ -76,7 +76,7 @@ static void get_frame_size(const char *format, sfIntRect *frame)
 	frame->height = atoi(format + i);
 }
 
-static int add_load(const char *format, sprite_t **sprites)
+static int add_load(const char *format, lsfSprite_t **sprites)
 {
 	char *filename;
 	sfIntRect frame;
@@ -92,11 +92,11 @@ static int add_load(const char *format, sprite_t **sprites)
 				RED, RESET, format - sstrlen(LOAD_TAG));
 			return (-1);
 		}
-		sprites[size] = create_sprite(filename);
+		sprites[size] = lsfSprite_create(filename);
 	}
 	else {
 		get_frame_size(format + len, &frame);
-		sprites[size] = create_sprite_rect(filename, frame);
+		sprites[size] = lsfSprite_create_rect(filename, frame);
 	}
 	sfree(&filename);
 	if (sprites[size] == NULL)
@@ -104,7 +104,7 @@ static int add_load(const char *format, sprite_t **sprites)
 	return (0);
 }
 
-static int use_script(char **file, int nb, sprite_t **sprites)
+static int use_script(char **file, int nb, lsfSprite_t **sprites)
 {
 	for (int i = 0; i < nb; ++i)
 		if (strncmp(file[i], LOAD_TAG, sstrlen(LOAD_TAG)) == 0) {
@@ -117,7 +117,7 @@ static int use_script(char **file, int nb, sprite_t **sprites)
 
 
 /* Load the sprites from the script in "pathname" with the name "script" */
-int load_script(const char *pathname, const char *script, sprite_t ***ptr)
+int lsfScript(const char *pathname, const char *script, lsfSprite_t ***ptr)
 {
 	char **file;
 	int line;
@@ -140,7 +140,7 @@ int load_script(const char *pathname, const char *script, sprite_t ***ptr)
 		return (-1);
 	}
 	nb = number_of_sprites(file + line, script);
-	*ptr = calloc(1, sizeof(sprite_t *) * (nb + 1));
+	*ptr = calloc(1, sizeof(lsfSprite_t *) * (nb + 1));
 	if (ptr == NULL)
 		return (-1);
 	if (use_script(file + line, nb, *ptr) == -1)

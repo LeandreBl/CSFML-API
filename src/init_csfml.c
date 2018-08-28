@@ -47,20 +47,20 @@ sfUint8 *pixels_buffer(int width, int height)
 	return ((sfUint8 *)pixels);
 }
 /*
-** Create a window_t object, all malloc and initialized with NULL
+** Create a lsfWindow_t object, all malloc and initialized with NULL
 ** for a Window names "CSFML" of size 1280 * 720
-** you'll have to call iniwindow_t(720, 16 / 9, "CSFML)
+** you'll have to call inilsfWindow_t(720, 16 / 9, "CSFML)
 ** dim is the ratio of the screen, such as 16/9, 4/3 ...
 ** bar can be set so the window has no button on top of it, so you can create
 ** your owns ! by entering 0, other possibility are sfClose | sfResize |
 *sfTitlebar
 ** return NULL on error
 */
-window_t *init_window(int height, float dim, char *name, int bar)
+lsfWindow_t *lsfWindow_create(int height, float dim, char *name, int bar)
 {
-	window_t *window;
+	lsfWindow_t *window;
 
-	window = malloc(sizeof(window_t));
+	window = malloc(sizeof(lsfWindow_t));
 	if (window == NULL)
 		return (NULL);
 	window->height = height;
@@ -68,7 +68,7 @@ window_t *init_window(int height, float dim, char *name, int bar)
 	window->pixels = pixels_buffer(window->width, window->height);
 	window->window =
 		create_window(name, window->width, window->height, bar);
-	window->frame = calloc(1, sizeof(sprite_t));
+	window->frame = calloc(1, sizeof(lsfSprite_t));
 	if (!window->pixels || !window->window || !window->pixels) {
 		dprintf(2, "[%sError%s] : Failed to create %s CSFML window\n",
 			BOLDRED, RESET, name);

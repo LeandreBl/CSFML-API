@@ -1,5 +1,5 @@
 /*
-** in_rect.c for CSFML in /home/leandre/C_graphical_prog/tekadventure
+** lsfInRect.c for CSFML in /home/leandre/C_graphical_prog/tekadventure
 **
 ** Made by Léandre Blanchard
 ** Login   <leandre.blanchard@epitech.eu>
@@ -11,7 +11,7 @@
 #include "lcsfml.h"
 
 /* Fill the given *rect pointer */
-void fill_rect(sfVector2f pos, int width, int height, sfIntRect *rect)
+void lsfRect_init(sfIntRect *rect, sfVector2f pos, int width, int height)
 {
 	rect->left = pos.x;
 	rect->top = pos.y;
@@ -20,7 +20,7 @@ void fill_rect(sfVector2f pos, int width, int height, sfIntRect *rect)
 }
 
 /* Create a sfIntRect from it's 4 values */
-sfIntRect simple_int_rect(int x, int y, int width, int height)
+sfIntRect lsfIntRect(int x, int y, int width, int height)
 {
 	sfIntRect rect;
 
@@ -32,7 +32,7 @@ sfIntRect simple_int_rect(int x, int y, int width, int height)
 }
 
 /* Return 1 if pos is inside the given rect, else 0 */
-int in_rect(sfVector2i pos, const sfIntRect *rect)
+int lsfInRect(const sfIntRect *rect, sfVector2i pos)
 {
 	if (pos.x < rect->left || pos.x > rect->left + rect->width
 	    || pos.y < rect->top || pos.y > rect->top + rect->height)
@@ -41,12 +41,12 @@ int in_rect(sfVector2i pos, const sfIntRect *rect)
 }
 
 /*
-** This function refresh the position of the mouse in window_t->mouse
+** This function refresh the position of the mouse in lsfWindow_t->mouse
 ** and return 0 if the mouse is located in the rectangle
 ** of size size.x * size.y who upper-left corner is at (origin.x, origin.y)
 */
-int is_in_rect(window_t *window, const sfIntRect *rect)
+int lsfIsInRect(lsfWindow_t *window, const sfIntRect *rect)
 {
-	pos_mouse(window);
-	return (in_rect(window->mouse, rect));
+	lsfWindow_mouse(window);
+	return (lsfInRect(rect, window->mouse));
 }

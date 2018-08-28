@@ -1,5 +1,5 @@
 /*
-7** put_text.c for  in /home/leandre/Rushs/scroller/lib/CSFML
+7** lsfPut_text.c for  in /home/leandre/Rushs/scroller/lib/CSFML
 **
 ** Made by Léandre Blanchard
 ** Login   <leandre.blanchard@epitech.eu>
@@ -16,7 +16,7 @@
 
 #include "colors.h"
 
-static int draw_on(window_t *window, sfVector2f pos, sfColor color, const char *str)
+static int draw_on(lsfWindow_t *window, sfVector2f pos, sfColor color, const char *str)
 {
 	sfFont *font;
 	sfText *text;
@@ -36,7 +36,7 @@ static int draw_on(window_t *window, sfVector2f pos, sfColor color, const char *
 	return (0);
 }
 
-int put_text(window_t *window, const char *format, sfVector2f pos, sfColor color, ...)
+int lsfPut_text(lsfWindow_t *window, const char *format, sfVector2f pos, sfColor color, ...)
 {
 	char *s;
 	va_list va;

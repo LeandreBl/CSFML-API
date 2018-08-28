@@ -11,11 +11,11 @@
 #include "lcsfml.h"
 
 /*
-** Refresh the position of the mouse in window_t ptr,
+** Refresh the position of the mouse in lsfWindow_t ptr,
 ** return the mouse position
 ** just return the position if window is NULL
 */
-sfVector2i pos_mouse(window_t *window)
+sfVector2i lsfWindow_mouse(lsfWindow_t *window)
 {
 	if (window != NULL)
 		window->mouse = sfMouse_getPositionRenderWindow(window->window);

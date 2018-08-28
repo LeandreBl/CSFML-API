@@ -9,7 +9,7 @@
 
 #include "lcsfml.h"
 
-sfbutton_t *button_by_name(sfbutton_t **buttons, const char *name)
+lsfButton_t *lsfGet_buttonByName(lsfButton_t **buttons, const char *name)
 {
 	for (int i = 0; buttons[i]; ++i)
 		if (strcmp(buttons[i]->name, name) == 0)
@@ -17,7 +17,7 @@ sfbutton_t *button_by_name(sfbutton_t **buttons, const char *name)
 	return (NULL);
 }
 
-sprite_t *sprite_by_name(sprite_t **sprites, const char *name)
+lsfSprite_t *lsfGet_spriteByName(lsfSprite_t **sprites, const char *name)
 {
 	for (int i = 0; sprites[i]; ++i)
 		if (strcmp(sprites[i]->name, name) == 0)

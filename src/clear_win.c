@@ -10,35 +10,35 @@
 
 #include "lcsfml.h"
 /*
-** clear the window_t current's sprites
+** clear the lsfWindow_t current's sprites
 */
-void window_clear(window_t *window)
+void lsfWindow_clear(lsfWindow_t *window)
 {
 	sfRenderWindow_clear(window->window, sfWhite);
 }
 
 /* Updates the window from the pixels */
-void window_update(window_t *window)
+void lsfWindow_update(lsfWindow_t *window)
 {
 	sfTexture_updateFromPixels(window->frame->texture, window->pixels,
 				   window->width, window->height, 0, 0);
-	put_sprite(window, window->frame, ORIGIN);
+	lsfPut_sprite(window, window->frame, ORIGIN);
 }
 
 /*
 ** refresh the window by displaying the sprites,
 ** and the pixels contained in window->pixels
 */
-void window_refresh(window_t *window)
+void lsfWindow_refresh(lsfWindow_t *window)
 {
-	window_update(window);
+	lsfWindow_update(window);
 	sfRenderWindow_display(window->window);
 }
 
 /*
 ** Fill all the pixel of window->pixels with color
 */
-void clear_color(window_t *window, sfColor color)
+void lsfWindow_set(lsfWindow_t *window, sfColor color)
 {
 	int x;
 	int y;
@@ -47,7 +47,7 @@ void clear_color(window_t *window, sfColor color)
 	while (y < window->height) {
 		x = 0;
 		while (x < window->width) {
-			put_pixel(window, x, y, color);
+			lsfPut_pixel(window, x, y, color);
 			++x;
 		}
 		y++;
@@ -55,10 +55,10 @@ void clear_color(window_t *window, sfColor color)
 }
 
 /*
-** fill all the bytes of the pixel array in window_t
+** fill all the bytes of the pixel array in lsfWindow_t
 ** with blank
 */
-void clear_white(window_t *window)
+void lsfWindow_setWhite(lsfWindow_t *window)
 {
 	int i;
 	int *pixels;

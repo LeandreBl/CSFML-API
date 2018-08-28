@@ -12,9 +12,9 @@
 
 /*
 ** This fonction return a sfColor filled with RGBA of the pixel
-** in (x, y) of window_t->pixels
+** in (x, y) of lsfWindow_t->pixels
 */
-sfColor get_pixel_color(int x, int y, window_t *window)
+sfColor get_pixel_color(int x, int y, lsfWindow_t *window)
 {
 	sfColor color;
 	sfUint8 r;

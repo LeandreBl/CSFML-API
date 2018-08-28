@@ -1,5 +1,5 @@
 /*
-** my_put_pixel.c for put_pixel in /home/leandre/Rushs/scroller/lib/CSFML
+** my_lsfPut_pixel.c for lsfPut_pixel in /home/leandre/Rushs/scroller/lib/CSFML
 **
 ** Made by Léandre Blanchard
 ** Login   <leandre.blanchard@epitech.eu>
@@ -15,7 +15,7 @@
 ** at coordinates (x, y) with RGBA color "color"
 ** return -1 on error
 */
-int put_pixel(window_t *window, int x, int y, sfColor color)
+int lsfPut_pixel(lsfWindow_t *window, int x, int y, sfColor color)
 {
 	int offset;
 

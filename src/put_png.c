@@ -1,5 +1,5 @@
 /*
-** my_put_png.c for put_png in /home/leandre/Rushs/scroller/lib/CSFML
+** my_lsfPut_png.c for lsfPut_png in /home/leandre/Rushs/scroller/lib/CSFML
 **
 ** Made by Léandre Blanchard
 ** Login   <leandre.blanchard@epitech.eu>
@@ -13,12 +13,12 @@
 /*
 ** Put an the image contained in the "name" file on the screen,
 ** this fonction does not need to be free or create a pointer
-** to a sprite_t, but the call is slower than a pusprite_t
+** to a lsfSprite_t, but the call is slower than a pulsfSprite_t
 ** because the image need to be re-loaded whenether the fonction
 ** is called
 ** this fonction does not return
 */
-void put_png(window_t *window, sfVector2f pos, const char *name)
+void lsfPut_png(lsfWindow_t *window, sfVector2f pos, const char *name)
 {
 	sfSprite *sprite;
 	sfTexture *texture;
@@ -34,7 +34,7 @@ void put_png(window_t *window, sfVector2f pos, const char *name)
 /*
 ** Does the exact same job as above, but resize the image
 */
-void put_png_resize(window_t *window, sfVector2f pos, const char *name,
+void lsfPut_png_resize(lsfWindow_t *window, sfVector2f pos, const char *name,
 		    sfVector2f resize)
 {
 	sfSprite *sprite;

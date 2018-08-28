@@ -14,7 +14,7 @@
 ** Does functions all return a sfVector with it's following instructions
 ** x, y and z
 */
-sfVector2f xy_vectorf(float x, float y)
+sfVector2f lsfVector2f(float x, float y)
 {
 	sfVector2f xy;
 
@@ -23,7 +23,7 @@ sfVector2f xy_vectorf(float x, float y)
 	return (xy);
 }
 
-sfVector2i xy_vectori(int x, int y)
+sfVector2i lsfVector2i(int x, int y)
 {
 	sfVector2i xy;
 
@@ -32,7 +32,7 @@ sfVector2i xy_vectori(int x, int y)
 	return (xy);
 }
 
-sfVector3f xyz_vector(float x, float y, float z)
+sfVector3f lsfVector3f(float x, float y, float z)
 {
 	sfVector3f xyz;
 

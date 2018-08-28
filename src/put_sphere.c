@@ -12,10 +12,10 @@
 
 /*
 ** Draw a sphere of size "size" at position "pos" with color "color"
-** on the window_t->pixels
+** on the lsfWindow_t->pixels
 ** this fonction does not return
 */
-void draw_circle(window_t *window, sfVector2f pos, int size, sfColor color)
+void lsfPut_circle(lsfWindow_t *window, sfVector2f pos, int size, sfColor color)
 {
 	int i;
 	int j;
@@ -30,7 +30,7 @@ void draw_circle(window_t *window, sfVector2f pos, int size, sfColor color)
 				((pos.x - pos.x + j) * (pos.x - pos.x + j))
 				+ ((pos.y - pos.y + i) * (pos.y - pos.y + i)));
 			if (dist < size)
-				put_pixel(window, pos.x + j, pos.y + i,
+				lsfPut_pixel(window, pos.x + j, pos.y + i,
 					     color);
 			j++;
 		}

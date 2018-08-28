@@ -12,25 +12,25 @@
 #include "defines.h"
 #include "colors.h"
 
-int button_poll_event(window_t *window, sfEvent *event, sfbutton_t **buttons,
+int lsfButtonPollEvent(lsfWindow_t *window, sfEvent *event, lsfButton_t **buttons,
 		      void *data)
 {
 	sfVector2i coord;
 
 	(void)window;
-	coord = xy_vectori(event->mouseButton.x, event->mouseButton.y);
+	coord = lsfVector2i(event->mouseButton.x, event->mouseButton.y);
 	for (int i = 0; buttons[i] != NULL; ++i)
-		sfbutton_exec(buttons[i], coord, data);
+		lsfButton_push(buttons[i], coord, data);
 	return (0);
 }
 
-void add_evt(evtptr_t *index, int type, evt_t fction)
+void lsfEvt_set(lsfEvtPtr_t *index, int type, lsfEvt_t fction)
 {
 	index->type = type;
 	index->fction = fction;
 }
 
-int ptr_pollevent(window_t *window, evtptr_t tab[], int size, void *data)
+int lsfPollEvent(lsfWindow_t *window, lsfEvtPtr_t tab[], int size, void *data)
 {
 	sfEvent event;
 

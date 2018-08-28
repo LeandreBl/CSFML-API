@@ -11,21 +11,21 @@
 #include "defines.h"
 #include "lbl-libc.h"
 
-void sfbutton_draw(window_t *window, sfbutton_t *button, sfVector2f pos)
+void llsfPut_button(lsfWindow_t *window, lsfButton_t *button, sfVector2f pos)
 {
-	pos_mouse(window);
+	lsfWindow_mouse(window);
 	button->pos = pos;
-	if (sfbutton_ispressed(button, window->mouse)) {
+	if (lsfButton_isPressed(button, window->mouse)) {
 		sfSprite_setColor(button->sprite->sprite,
 				  sfColor_fromRGB(100, 100, 100));
-		put_sprite(window, button->sprite, button->pos);
+		lsfPut_sprite(window, button->sprite, button->pos);
 		sfSprite_setColor(button->sprite->sprite, sfWhite);
 	}
 	else
-		put_sprite(window, button->sprite, button->pos);
+		lsfPut_sprite(window, button->sprite, button->pos);
 }
 
-void sfbutton_draw_name(window_t *window, sfbutton_t *button, sfVector2f rpos,
+void llsfPut_button_name(lsfWindow_t *window, lsfButton_t *button, sfVector2f rpos,
 			sfColor color)
 {
 	sfVector2f pos;
@@ -36,19 +36,19 @@ void sfbutton_draw_name(window_t *window, sfbutton_t *button, sfVector2f rpos,
 	size.y = (nb_of(button->name, '\n') + 1) * 24;
 	pos.x = button->pos.x + (button->size.x - size.x) / 2;
 	pos.y = button->pos.y + (button->size.y - size.y) / 2;
-	sfbutton_draw(window, button, rpos);
-	put_text(window, button->name, pos, color);
+	lsfPut_button(window, button, rpos);
+	lsfPut_text(window, button->name, pos, color);
 }
 
-void sfbutton_draw_name_all(window_t *window, sfbutton_t **buttons,
+void lsfbuttons_draw_name(lsfWindow_t *window, lsfButton_t **buttons,
 			    sfColor color)
 {
 	for (int i = 0; buttons[i]; ++i)
-		sfbutton_draw_name(window, buttons[i], buttons[i]->pos, color);
+		lsfPut_button_name(window, buttons[i], buttons[i]->pos, color);
 }
 
-void sfbutton_draw_all(window_t *window, sfbutton_t **buttons)
+void lsfbuttons_draw(lsfWindow_t *window, lsfButton_t **buttons)
 {
 	for (int i = 0; buttons[i]; ++i)
-		sfbutton_draw(window, buttons[i], buttons[i]->pos);
+		lsfPut_button(window, buttons[i], buttons[i]->pos);
 }

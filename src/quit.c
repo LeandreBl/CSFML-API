@@ -13,14 +13,14 @@
 /*
 ** this fonction need to be added in a display loop
 ** this fonction does not return, but close the window
-** in window_t->window, is the user clic on the 'x' o the window
+** in lsfWindow_t->window, is the user clic on the 'x' o the window
 ** or press Escape (echap in french)
 */
-void close_win(window_t *win)
+void lsfWindow_close(lsfWindow_t *win)
 {
 	sfVector2i pos;
 
-	pos = pos_mouse(win);
+	pos = lsfWindow_mouse(win);
 	if (pos.x >= win->width - 40 && pos.y <= 0
 	    && sfMouse_isButtonPressed(sfMouseLeft) && pos.x <= win->width
 	    && pos.y >= -40)

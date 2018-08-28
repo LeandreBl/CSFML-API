@@ -18,7 +18,7 @@
 ** only frees the texture, and then all the sprites
 ** replace the freed pointers by NULL
 */
-void free_sprites_only(sprite_t **sprites)
+void lsfSprite_destroys_only(lsfSprite_t **sprites)
 {
 	sfTexture_destroy(sprites[0]->texture);
 	for (int i = 0; sprites[i]; ++i) {
@@ -29,13 +29,13 @@ void free_sprites_only(sprite_t **sprites)
 	free(sprites);
 }
 /*
-** Entirely free a sprite_t ** using a call to free_sprite
+** Entirely free a lsfSprite_t ** using a call to lsfSprite_destroy
 ** and replace the ptr freed, by NULL
 */
-void free_sprites(sprite_t **sprites)
+void lsfSprite_destroys(lsfSprite_t **sprites)
 {
 	for (int i = 0; sprites[i]; ++i)
-		free_sprite(sprites[i]);
+		lsfSprite_destroy(sprites[i]);
 	free(sprites);
 }
 /*
@@ -49,9 +49,9 @@ void free_musics(sfMusic **musics)
 	free(musics);
 }
 /*
-** Free a single sprite_t, then replace it by NULL
+** Free a single lsfSprite_t, then replace it by NULL
 */
-void free_sprite(sprite_t *sprite)
+void lsfSprite_destroy(lsfSprite_t *sprite)
 {
 	sfSprite_destroy(sprite->sprite);
 	sfTexture_destroy(sprite->texture);
@@ -60,9 +60,9 @@ void free_sprite(sprite_t *sprite)
 }
 /*
 ** Using a lot of calls to above fonctions,
-** frees the whole window_t structure
+** frees the whole lsfWindow_t structure
 */
-void free_window(window_t *window)
+void lsfWidnow_destroy(lsfWindow_t *window)
 {
 	sfRenderWindow_destroy(window->window);
 	free(window->pixels);

@@ -1,5 +1,5 @@
 /*
-** create_sprite.c for create_sprite in /home/leandre/Rushs/scroller
+** lsfSprite_create.c for lsfSprite_create in /home/leandre/Rushs/scroller
 **
 ** Made by Léandre Blanchard
 ** Login   <leandre.blanchard@epitech.eu>
@@ -22,13 +22,13 @@
 ** Create a sprite from <pathname> with the texture at <rect>
 ** Return NULL on Error
 */
-sprite_t *create_sprite_rect(const char *pathname, const sfIntRect area)
+lsfSprite_t *lsfSprite_create_rect(const char *pathname, const sfIntRect area)
 {
-	sprite_t *sprite;
+	lsfSprite_t *sprite;
 
 	printf("[%sInfo%s] Opening %s%s%s\n", YELLOW, RESET, CYAN, pathname,
 	       RESET);
-	sprite = calloc(1, sizeof(sprite_t));
+	sprite = calloc(1, sizeof(lsfSprite_t));
 	if (sprite == NULL)
 		return (NULL);
 	if (area.top == -1 && area.left == -1 && area.width == -1
@@ -50,10 +50,10 @@ sprite_t *create_sprite_rect(const char *pathname, const sfIntRect area)
 }
 
 /*
-** add the sprite_t "sprite" on the window_t "window" at the pos.x, pos.y
-** will need a call to window_refresh(window) to display it
+** add the lsfSprite_t "sprite" on the lsfWindow_t "window" at the pos.x, pos.y
+** will need a call to lsfWindow_refresh(window) to display it
 */
-void put_sprite(window_t *window, sprite_t *sprite, sfVector2f pos)
+void lsfPut_sprite(lsfWindow_t *window, lsfSprite_t *sprite, sfVector2f pos)
 {
 	if (sprite == NULL || sprite->sprite == NULL
 	    || sprite->texture == NULL) {
@@ -62,7 +62,7 @@ void put_sprite(window_t *window, sprite_t *sprite, sfVector2f pos)
 		return;
 	}
 	sfSprite_setPosition(sprite->sprite, pos);
-	sfSprite_setScale(sprite->sprite, xy_vectorf(1, 1));
+	sfSprite_setScale(sprite->sprite, lsfVector2f(1, 1));
 	sfRenderWindow_drawSprite(window->window, sprite->sprite, NULL);
 }
 /*
@@ -70,7 +70,7 @@ void put_sprite(window_t *window, sprite_t *sprite, sfVector2f pos)
 ** will display the sprite as 2 as large as normal
 ** does not have any conflict with fonction above
 */
-void put_sprite_resize(window_t *window, sprite_t *sprite, sfVector2f pos,
+void lsfPut_sprite_resize(lsfWindow_t *window, lsfSprite_t *sprite, sfVector2f pos,
 		       sfVector2f resize)
 {
 	if (sprite == NULL) {
@@ -83,27 +83,27 @@ void put_sprite_resize(window_t *window, sprite_t *sprite, sfVector2f pos,
 	sfRenderWindow_drawSprite(window->window, sprite->sprite, NULL);
 }
 /*
-** primary sprite_t fonction, create a sprite_t from a file
-** getting texture in sprite_t->texture and sprite in sprite_t->sprite
-** return NULL on ERROR, and sprite_t malloced on SUCCESS
+** primary lsfSprite_t fonction, create a lsfSprite_t from a file
+** getting texture in lsfSprite_t->texture and sprite in lsfSprite_t->sprite
+** return NULL on ERROR, and lsfSprite_t malloced on SUCCESS
 */
-sprite_t *create_sprite(const char *pathname)
+lsfSprite_t *lsfSprite_create(const char *pathname)
 {
-	return (create_sprite_rect(pathname, simple_int_rect(-1, -1, -1, -1)));
+	return (lsfSprite_create_rect(pathname, lsfIntRect(-1, -1, -1, -1)));
 }
 /*
-** create an array of sprite_t, ended by a NULL ptr
+** create an array of lsfSprite_t, ended by a NULL ptr
 ** then a call to cerate_sprite must be usefull to fill it
 */
-sprite_t **create_sprites(int nb)
+lsfSprite_t **lsfSprites_create(int nb)
 {
-	sprite_t **sprites;
+	lsfSprite_t **sprites;
 
-	sprites = calloc(1, sizeof(sprite_t *) * (nb + 1));
+	sprites = calloc(1, sizeof(lsfSprite_t *) * (nb + 1));
 	if (sprites == NULL)
 		return (NULL);
 	for (int i = 0; i < nb; ++i) {
-		sprites[i] = calloc(1, sizeof(sprite_t));
+		sprites[i] = calloc(1, sizeof(lsfSprite_t));
 		if (sprites[i] == NULL)
 			return (NULL);
 	}

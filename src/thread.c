@@ -14,7 +14,7 @@
 ** disabling all kind of non-terminated thread that has been freed
 ** Does not return
 */
-void free_thread(sfThread *thread)
+void sfThread_kill(sfThread *thread)
 {
 	usleep(2000);
 	sfThread_terminate(thread);

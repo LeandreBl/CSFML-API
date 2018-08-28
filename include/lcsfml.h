@@ -30,30 +30,30 @@ extern "C" {
 
 # define KP(key) (sfKeyboard_isKeyPressed(key))
 # define MP (sfMouse_isButtonPressed(sfMouseLeft))
-# define ORIGIN (xy_vectorf(0, 0))
+# define ORIGIN (lsfVector2f(0, 0))
 
 /*
 ** Simple sprite structure, saving the texture and the sprite,
-** can be easely used with pusprite_t, and create via a call
-** of create_sprite(<pathname>)
+** can be easely used with lsfPut_sprite, and create via a call
+** of lsfSprite_create(<pathname>)
 */
-struct  sprite_s
+typedef struct sprite_s
 {
- char *name;
- sfSprite *sprite;
- sfTexture *texture;
-};
+	char *name;
+	sfSprite *sprite;
+	sfTexture *texture;
+} lsfSprite_t;
 
 /*
 ** A window structure, containing it's size,
-** the position of the mouse using pos_mouse
+** the position of the mouse using lsfWindow_mouse
 ** a char * containing the name of the font for
-** put_text fcontions
+** lsfPut_text fcontions
 ** an array of pixels, of the size of the window
 ** an array of sfMusics *ptr
 ** a texture linked to the array of pixels, same for the sprite
 */
-struct window_s
+typedef struct window_s
 {
 	int width;
 	int height;
@@ -63,141 +63,137 @@ struct window_s
 	char *font;
 	sfMusic **musics;
 	struct sprite_s *frame;
-};
+} lsfWindow_t;
 
-typedef int (* evt_t)(struct window_s *window,
+typedef int (* lsfEvt_t)(struct window_s *window,
     sfEvent *event, void *data);
 
-struct evtptr_s
+typedef struct evtptr_s
 {
 	sfEventType type;
-	evt_t  fction;
-};
+	lsfEvt_t fction;
+} lsfEvtPtr_t;
 
-struct sfbutton_s
+typedef struct lsfbutton_s
 {
   struct sprite_s *sprite;
   char *name;
   sfVector2f pos;
   sfVector2f size;
-  int (*fction)(void *data, struct sfbutton_s *this);
-};
+  int (*fction)(void *data, struct lsfbutton_s *this);
+} lsfButton_t;
 
-typedef struct window_s window_t;
-typedef struct sprite_s sprite_t;
-typedef struct sfbutton_s sfbutton_t;
-typedef struct evtptr_s evtptr_t;
+int lsfScript(const char *pathname, const char *script,
+		lsfSprite_t ***ptr);
 
-int load_script(const char *pathname, const char *script,
-		sprite_t ***ptr);
+sfIntRect lsfIntRect(int x, int y, int width, int height);
 
-sfIntRect simple_int_rect(int x, int y, int width, int height);
-
-void draw_line(window_t *window, sfVector2f from,
+void lsfDrawLine(lsfWindow_t *window, sfVector2f from,
 		  sfVector2f to, sfColor color);
 
-void free_sprite(sprite_t *sprite);
+void lsfSprite_destroy(lsfSprite_t *sprite);
 
-void free_sprites_only(sprite_t **sprites);
+void lsfSprites_destroy_only(lsfSprite_t **sprites);
 
 sfUint8 *pixels_buffer(int width, int height);
 
-void free_thread(sfThread *thread);
+void sfThread_kill(sfThread *thread);
 
-void free_window(window_t *window);
+void lsfWidnow_destroy(lsfWindow_t *window);
 
-void free_sprites(sprite_t **sprites);
+void lsfSprites_destroy(lsfSprite_t **sprites);
 
-sprite_t **create_sprites(int nb);
+lsfSprite_t **lsfSprites_create(int nb);
 
-void fill_rect(sfVector2f pos, int width,
-	       int height, sfIntRect *rect);
+void lsfRect_init(sfIntRect *rect, sfVector2f pos, 
+		int width, int height);
 
-int in_rect(sfVector2i pos, const sfIntRect *rect);
+int lsfInRect(const sfIntRect *rect, sfVector2i pos);
 
-int is_in_rect(window_t *window, const sfIntRect *rect);
+int lsfIsInRect(lsfWindow_t *window, const sfIntRect *rect);
 
-void window_clear(window_t *window);
+void lsfWindow_clear(lsfWindow_t *window);
 
-int key_released(int key);
+int lsfKeyReleased(int key);
 
-void window_update(window_t *window);
+void lsfWindow_update(lsfWindow_t *window);
 
-void window_refresh(window_t *window);
+void lsfWindow_refresh(lsfWindow_t *window);
 
-void put_sprite(window_t *window,
-		sprite_t *sprite, sfVector2f pos);
+void lsfPut_sprite(lsfWindow_t *window,
+		lsfSprite_t *sprite, sfVector2f pos);
 
-void put_sprite_resize(window_t *window, sprite_t *sprite,
+void lsfPut_sprite_resize(lsfWindow_t *window, lsfSprite_t *sprite,
 		       sfVector2f pos, sfVector2f resize);
 
-void close_win(window_t *window);
+void lsfWindow_close(lsfWindow_t *window);
 
-sfVector2i xy_vectori(int x, int y);
+sfVector2i lsfVector2i(int x, int y);
 
-sfVector2f xy_vectorf(float x, float y);
+sfVector2f lsfVector2f(float x, float y);
 
-sfVector3f xyz_vector(float x, float y, float z);
+sfVector3f lsfVector3f(float x, float y, float z);
 
-sfVector2i pos_mouse(window_t *window);
+sfVector2i lsfWindow_mouse(lsfWindow_t *window);
 
-void put_square(sfVector2i pos, sfColor color,
-		window_t *window, int size);
+void lsfPut_square(sfVector2i pos, sfColor color,
+		lsfWindow_t *window, int size);
 
-void draw_circle(window_t *window, sfVector2f pos,
+void lsfPut_circle(lsfWindow_t *window, sfVector2f pos,
 		 int size, sfColor color);
 
-void put_png_resize(window_t *window, sfVector2f pos,
+void lsfPut_png_resize(lsfWindow_t *window, sfVector2f pos,
 		    const char *name, sfVector2f resize);
 
-void put_png(window_t *window, sfVector2f pos, const char *name);
+void lsfPut_png(lsfWindow_t *window, sfVector2f pos, const char *name);
 
-int put_pixel(window_t *window, int x, int y, sfColor color);
+int lsfPut_pixel(lsfWindow_t *window, int x, int y, sfColor color);
 
-void clear_color(window_t *window, sfColor color);
+void lsfWindow_set(lsfWindow_t *window, sfColor color);
 
-void clear_white(window_t *window);
+void lsfWindow_setWhite(lsfWindow_t *window);
 
-int put_text(window_t *window, const char *format, sfVector2f pos, sfColor color, ...);
+int lsfPut_text(lsfWindow_t *window, const char *format, sfVector2f pos, sfColor color, ...);
 
-window_t *init_window(int height, float dim, char *name, int bar);
+lsfWindow_t *lsfWindow_create(int height, float dim, char *name, int bar);
 
-sprite_t *create_sprite(const char *pathname);
-sprite_t *create_sprite_rect(const char *pathname,
+lsfSprite_t *lsfSprite_create(const char *pathname);
+lsfSprite_t *lsfSprite_create_rect(const char *pathname,
 			     const sfIntRect area);
 
-double distance(sfVector2f a, sfVector2f b);
+double lsfDistance(sfVector2f a, sfVector2f b);
 
-sfbutton_t *sfbutton_create(const char *name, sprite_t *sprite,
+lsfButton_t *lsfButton_create(const char *name, lsfSprite_t *sprite,
 			    sfVector2f pos,
-			    int (*fction)(void *data, sfbutton_t *this));
-int sfbutton_ispressed(sfbutton_t *button, sfVector2i pos);
+			    int (*fction)(void *data, lsfButton_t *this));
+int lsfButton_isPressed(lsfButton_t *button, sfVector2i pos);
 
-void sfbutton_draw(window_t *window, sfbutton_t *button, sfVector2f pos);
+void lsfPut_button(lsfWindow_t *window, lsfButton_t *button, sfVector2f pos);
 
-void sfbutton_draw_name(window_t *window, sfbutton_t *button,
+void lsfPut_button_name(lsfWindow_t *window, lsfButton_t *button,
 			sfVector2f pos, sfColor color);
-int sfbutton_exec(sfbutton_t *button, sfVector2i pos, void *data);
+int lsfButton_push(lsfButton_t *button, sfVector2i pos, void *data);
 
-void free_sfbutton(sfbutton_t *button);
+void sfButton_destroy(lsfButton_t *button);
 
-void free_sfbuttons(sfbutton_t **buttons);
+void sfButtons_destroy(lsfButton_t **buttons);
 
-int ptr_pollevent(window_t *window, evtptr_t tab[],
+int lsfPollEvent(lsfWindow_t *window, lsfEvtPtr_t tab[],
 		  int size, void *data);
 
-void add_evt(evtptr_t *index, int type, evt_t fction_ptr);
+void lsfEvt_set(lsfEvtPtr_t *index, int type, lsfEvt_t fction_ptr);
 
-int button_poll_event(window_t *window, sfEvent *event,
-		      sfbutton_t **buttons, void *data);
+int lsfButtonPollEvent(lsfWindow_t *window, sfEvent *event,
+		      lsfButton_t **buttons, void *data);
 
-void sfbutton_draw_name_all(window_t *window, sfbutton_t **buttons,
+void lsfPut_buttons_name(lsfWindow_t *window, lsfButton_t **buttons,
 			    sfColor color);
 
-void sfbutton_draw_all(window_t *window, sfbutton_t **buttons);
+void lsfPut_buttons(lsfWindow_t *window, lsfButton_t **buttons);
 
-sfbutton_t *button_by_name(sfbutton_t **buttons, const char *name);
-sprite_t *sprite_by_name(sprite_t **sprites, const char *name);
+lsfButton_t *lsfGet_buttonByName(lsfButton_t **buttons, const char *name);
+
+lsfSprite_t *lsfGet_spriteByName(lsfSprite_t **sprites, const char *name);
 
 #ifdef __cplusplus
 }
