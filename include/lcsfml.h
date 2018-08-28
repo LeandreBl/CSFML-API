@@ -99,7 +99,7 @@ sfUint8 *pixels_buffer(int width, int height);
 
 void sfThread_kill(sfThread *thread);
 
-void lsfWidnow_destroy(lsfWindow_t *window);
+void lsfWindow_destroy(lsfWindow_t *window);
 
 void lsfSprites_destroy(lsfSprite_t **sprites);
 

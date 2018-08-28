@@ -62,7 +62,7 @@ void lsfSprite_destroy(lsfSprite_t *sprite)
 ** Using a lot of calls to above fonctions,
 ** frees the whole lsfWindow_t structure
 */
-void lsfWidnow_destroy(lsfWindow_t *window)
+void lsfWindow_destroy(lsfWindow_t *window)
 {
 	sfRenderWindow_destroy(window->window);
 	free(window->pixels);
