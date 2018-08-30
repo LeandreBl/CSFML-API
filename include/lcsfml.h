@@ -104,7 +104,7 @@ void lsfSprites_destroy(lsfSprite_t **sprites);
 
 lsfSprite_t **lsfSprites_create(int nb);
 
-void lsfRect_init(sfIntRect *rect, sfVector2f pos, 
+void lsfRect_init(sfIntRect *rect, sfVector2f pos,
 		int width, int height);
 
 int lsfInRect(const sfIntRect *rect, sfVector2i pos);
@@ -157,6 +157,7 @@ int lsfPut_text(lsfWindow_t *window, const char *format, sfVector2f pos, sfColor
 lsfWindow_t *lsfWindow_create(int height, float dim, char *name, int bar);
 
 lsfSprite_t *lsfSprite_create(const char *pathname);
+
 lsfSprite_t *lsfSprite_create_rect(const char *pathname,
 			     const sfIntRect area);
 
@@ -165,12 +166,14 @@ double lsfDistance(sfVector2f a, sfVector2f b);
 lsfButton_t *lsfButton_create(const char *name, lsfSprite_t *sprite,
 			    sfVector2f pos,
 			    int (*fction)(void *data, lsfButton_t *this));
+
 int lsfButton_isPressed(lsfButton_t *button, sfVector2i pos);
 
 void lsfPut_button(lsfWindow_t *window, lsfButton_t *button, sfVector2f pos);
 
 void lsfPut_button_name(lsfWindow_t *window, lsfButton_t *button,
 			sfVector2f pos, sfColor color);
+
 int lsfButton_push(lsfButton_t *button, sfVector2i pos, void *data);
 
 void lsfButton_destroy(lsfButton_t *button);

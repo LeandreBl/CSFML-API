@@ -20,6 +20,8 @@ lsfButton_t *lsfButton_create(const char *name, lsfSprite_t *sprite, sfVector2f 
 	if (button == NULL)
 		return (NULL);
 	button->name = strdup(name);
+	if (button->name == NULL)
+		return (NULL);
 	button->fction = fction;
 	button->pos = pos;
 	button->sprite = sprite;
@@ -32,10 +34,9 @@ lsfButton_t *lsfButton_create(const char *name, lsfSprite_t *sprite, sfVector2f 
 int lsfButton_isPressed(lsfButton_t *button, sfVector2i pos)
 {
 	sfIntRect rect;
+	sfVector2f scale = sfSprite_getScale(button->sprite->sprite);
 
-	if (button == NULL)
-		return (0);
-	lsfRect_init(&rect, button->pos, button->size.x, button->size.y);
+	lsfRect_init(&rect, button->pos, button->size.x * scale.x, button->size.y * scale.y);
 	if (lsfInRect(&rect, pos))
 		return (1);
 	return (0);
