@@ -28,16 +28,18 @@ void lsfPut_button(lsfWindow_t *window, lsfButton_t *button, sfVector2f pos)
 void lsfPut_button_name(lsfWindow_t *window, lsfButton_t *button, sfVector2f rpos,
 			sfColor color)
 {
+	sfFloatRect frect;
 	sfVector2f pos;
-	sfVector2f size;
 
-	button->pos = rpos;
-	size.x = sstrlen(button->name) * 12;
-	size.y = (nb_of(button->name, '\n') + 1) * 24;
-	pos.x = button->pos.x + (button->size.x - size.x) / 2;
-	pos.y = button->pos.y + (button->size.y - size.y) / 2;
 	lsfPut_button(window, button, rpos);
-	lsfPut_text(window, button->name, pos, color);
+	sfText_setFont(button->name, window->font);
+	sfText_setColor(button->name, color);
+	sfText_setCharacterSize(button->name, 24);
+	frect = sfText_getLocalBounds(button->name);
+	pos.x = button->pos.x + (button->size.x - frect.width) / 2.0 - frect.left;
+	pos.y = button->pos.y + (button->size.y - frect.height) / 2.0 - frect.top;
+	sfText_setPosition(button->name, pos);
+	sfRenderWindow_drawText(window->window, button->name, NULL);
 }
 
 void lsfbuttons_draw_name(lsfWindow_t *window, lsfButton_t **buttons,

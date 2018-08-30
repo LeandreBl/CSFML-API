@@ -58,7 +58,8 @@ void lsfWindow_destroy(lsfWindow_t *window)
 {
 	sfRenderWindow_destroy(window->window);
 	free(window->pixels);
-	free(window->font);
+	if (window->font)
+		sfFont_destroy(window->font);
 	if (window->frame != NULL) {
 		sfTexture_destroy(window->frame->texture);
 		sfSprite_destroy(window->frame->sprite);

@@ -12,7 +12,7 @@
 lsfButton_t *lsfGet_buttonByName(lsfButton_t **buttons, const char *name)
 {
 	for (int i = 0; buttons[i]; ++i)
-		if (strcmp(buttons[i]->name, name) == 0)
+		if (strcmp(sfText_getString(buttons[i]->name), name) == 0)
 			return (buttons[i]);
 	return (NULL);
 }

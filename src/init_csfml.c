@@ -82,3 +82,11 @@ lsfWindow_t *lsfWindow_create(int height, float dim, char *name, int bar)
 	window->font = NULL;
 	return (window);
 }
+
+int lsfWindow_setFont(lsfWindow_t *window, const char *filename)
+{
+	window->font = sfFont_createFromFile(filename);
+	if (window->font == NULL)
+		return (-1);
+	return (0);
+}

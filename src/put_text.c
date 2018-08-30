@@ -18,21 +18,18 @@
 
 static int draw_on(lsfWindow_t *window, sfVector2f pos, sfColor color, const char *str)
 {
-	sfFont *font;
 	sfText *text;
 
-	font = sfFont_createFromFile(window->font);
 	text = sfText_create();
-	if (font == NULL || text == NULL)
+	if (window->font == NULL || text == NULL)
 		return (-1);
 	sfText_setString(text, str);
-	sfText_setFont(text, font);
+	sfText_setFont(text, window->font);
 	sfText_setColor(text, color);
 	sfText_setCharacterSize(text, 24);
 	sfText_setPosition(text, pos);
 	sfRenderWindow_drawText(window->window, text, NULL);
 	sfText_destroy(text);
-	sfFont_destroy(font);
 	return (0);
 }
 

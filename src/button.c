@@ -19,9 +19,10 @@ lsfButton_t *lsfButton_create(const char *name, lsfSprite_t *sprite, sfVector2f 
 	button = calloc(1, sizeof(lsfButton_t));
 	if (button == NULL)
 		return (NULL);
-	button->name = strdup(name);
+	button->name = sfText_create();
 	if (button->name == NULL)
 		return (NULL);
+	sfText_setString(button->name, name);
 	button->fction = fction;
 	button->pos = pos;
 	button->sprite = sprite;

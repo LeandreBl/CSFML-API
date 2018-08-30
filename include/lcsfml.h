@@ -59,13 +59,13 @@ typedef struct window_s
 	int height;
 	sfRenderWindow *window;
 	sfUint8 *pixels;
-	char *font;
+	sfFont *font;
 	struct sprite_s *frame;
 	sfVector2i mouse;
 } lsfWindow_t;
 
 typedef int (* lsfEvt_t)(struct window_s *window,
-    sfEvent *event, void *data);
+			sfEvent *event, void *data);
 
 typedef struct evtptr_s
 {
@@ -75,12 +75,14 @@ typedef struct evtptr_s
 
 typedef struct lsfbutton_s
 {
-  struct sprite_s *sprite;
-  char *name;
-  sfVector2f pos;
-  sfVector2f size;
-  int (*fction)(void *data, struct lsfbutton_s *this);
+	struct sprite_s *sprite;
+	sfText *name;
+	sfVector2f pos;
+	sfVector2f size;
+	int (*fction)(void *data, struct lsfbutton_s *this);
 } lsfButton_t;
+
+int lsfWindow_setFont(lsfWindow_t *window, const char *filename);
 
 int lsfScript(const char *pathname, const char *script,
 		lsfSprite_t ***ptr);
@@ -108,6 +110,8 @@ void lsfRect_init(sfIntRect *rect, sfVector2f pos,
 		int width, int height);
 
 int lsfInRect(const sfIntRect *rect, sfVector2i pos);
+
+int lsfIsInRect(lsfWindow_t *window, const sfIntRect *rect);
 
 void lsfWindow_clear(lsfWindow_t *window);
 

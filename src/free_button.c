@@ -16,6 +16,6 @@ void lsfButton_destroys(lsfButton_t **buttons)
 
 void lsfButton_destroy(lsfButton_t *button)
 {
-	free(button->name);
+	sfText_destroy(button->name);
 	free(button);
 }

@@ -31,6 +31,15 @@ sfIntRect lsfIntRect(int x, int y, int width, int height)
 	return (rect);
 }
 
+/* Return 1 if pos is inside the given rect, else 0 */
+int lsfInRect(const sfIntRect *rect, sfVector2i pos)
+{
+	if (pos.x < rect->left || pos.x > rect->left + rect->width
+		|| pos.y < rect->top || pos.y > rect->top + rect->height)
+		return (0);
+	return (1);
+}
+
 /*
 ** This function refresh the position of the mouse in lsfWindow_t->mouse
 ** and return 0 if the mouse is located in the rectangle
