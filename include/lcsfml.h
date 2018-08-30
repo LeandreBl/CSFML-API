@@ -109,8 +109,6 @@ void lsfRect_init(sfIntRect *rect, sfVector2f pos,
 
 int lsfInRect(const sfIntRect *rect, sfVector2i pos);
 
-int lsfIsInRect(lsfWindow_t *window, const sfIntRect *rect);
-
 void lsfWindow_clear(lsfWindow_t *window);
 
 int lsfKeyReleased(int key);
